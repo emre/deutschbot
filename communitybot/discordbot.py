@@ -150,8 +150,8 @@ async def set(ctx, threshold):
 
     try:
         threshold = int(threshold)
-        if threshold > 10000:
-            await bot.say('Treshold can\'t be greater then 10000')
+        if threshold > 100000:
+            await bot.say('Treshold can\'t be greater than 100000')
             return
     except ValueError:
         await bot.say('Treshold must be integer.')

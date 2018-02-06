@@ -11,6 +11,7 @@ required for bot to work, however it's highly suggested.
 $ git clone https://github.com/emre/deutschbot.git
 $ cd deutschbot
 $ pip install -r requirements.txt
+$ cd communitybot
 $ vim settings.py # edit accordingly
 ```
 

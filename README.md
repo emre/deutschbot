@@ -72,6 +72,18 @@ bot will calculate a score and if the score is greater then the threshold, it wi
 
 After upvoting, it will also post to discord about it.
 
+**Starting from a specific block**
+
+By default, curator bot will start listening from the last block generated. If you need to start it from a
+specific block height, you should run the bot as:
+
+```
+$python deutschbot.py  --run curate --start-block 12312333
+```
+
+
+
+
 
 
 

@@ -19,9 +19,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--run")
     parser.add_argument("--add-discord-user")
+    parser.add_argument("--start-block")
 
     args = parser.parse_args()
     runner = args.run
+    start_block = args.start_block
 
     if args.add_discord_user:
         added = add_discord_user(*args.add_discord_user.split("#"))
@@ -48,21 +50,15 @@ def main():
             communitybot.settings.BOT_ACCOUNT,
         )
         starting_point = None
-        if communitybot.settings.START_BLOCK == "LAST_PROCESSED_BLOCK":
+        if start_block:
+            starting_point = int(start_block)
+        else:
             # get the starting point
             option = get_option(communitybot.settings.LAST_BLOCK_ID)
             if option:
                 starting_point = int(option["value"])
-                logger.info("Starting from block %s", starting_point)
-        else:
-            try:
-                starting_point = int(communitybot.settings.START_BLOCK)
-                logger.info("Starting point set as %s", starting_point)
-            except ValueError:
-                logger.error("START_BLOCK setting should be i"
-                             "nt or LAST_PROCESSES_BLOCK")
-                return
 
+        logger.info("Starting from block %s", starting_point)
         c.listen_blocks(starting_point=starting_point)
 
 if __name__ == '__main__':

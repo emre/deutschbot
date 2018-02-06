@@ -8,6 +8,7 @@ from communitybot.utils import (
     username_is_valid,
     add_to_curators,
     remove_from_curators,
+    get_curators,
     get_help_message,
     get_option,
     set_option
@@ -132,6 +133,12 @@ async def remove(ctx, account):
         message = "%s is not on the curators!" % account
 
     await bot.say(message)
+
+
+@curators.command()
+async def list():
+    curators = [c["account"] for c in get_curators()]
+    await bot.say("**Current active curators**: " + ", ".join(curators))
 
 
 @bot.group(pass_context=True)

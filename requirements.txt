@@ -2,3 +2,4 @@ dataset
 requests
 steem
 pymysql
+discord
